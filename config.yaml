@@ -1,0 +1,41 @@
+# Wydanie testowe: 4-6 stron, 6 sekcji, do 07:00 Europe/Warsaw.
+publication:
+  title: "PORANNA PRASA"
+  tagline: "Wiadomości, które warto przeczytać przy kawie"
+  timezone: "Europe/Warsaw"
+  max_age_hours: 48
+  max_stories: 28
+  min_stories: 9
+  ai_model: "gpt-4.1-mini"
+  language: "pl"
+  printer: "Brother HL-1210WE"
+sections:
+  - name: "POLSKA"
+    limit: 5
+    feeds:
+      - "https://news.google.com/rss/search?q=Polska%20wiadomo%C5%9Bci%20when%3A1d&hl=pl&gl=PL&ceid=PL:pl"
+  - name: "ŚWIAT"
+    limit: 5
+    feeds:
+      - "https://feeds.bbci.co.uk/news/world/rss.xml"
+      - "https://www.theguardian.com/world/rss"
+  - name: "TECHNOLOGIA I AI"
+    limit: 5
+    feeds:
+      - "https://feeds.bbci.co.uk/news/technology/rss.xml"
+      - "https://www.theverge.com/rss/index.xml"
+  - name: "NAUKA"
+    limit: 4
+    feeds:
+      - "https://feeds.bbci.co.uk/news/science_and_environment/rss.xml"
+      - "https://www.sciencedaily.com/rss/top/science.xml"
+  - name: "KULTURA, FILM I GRY"
+    limit: 5
+    feeds:
+      - "https://news.google.com/rss/search?q=%28horror%20film%20OR%20video%20games%20OR%20Nintendo%29%20when%3A2d&hl=pl&gl=PL&ceid=PL:pl"
+      - "https://www.theguardian.com/film/rss"
+  - name: "MUZYKA I INNE ODKRYCIA"
+    limit: 4
+    feeds:
+      - "https://news.google.com/rss/search?q=%28Knocked%20Loose%20OR%20Spiritbox%20OR%20Poppy%20OR%20Sleep%20Token%20OR%20metalcore%29%20when%3A7d&hl=en-US&gl=US&ceid=US:en"
+      - "https://www.theguardian.com/music/rss"
