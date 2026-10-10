@@ -15,10 +15,12 @@ python -c "from zoneinfo import ZoneInfo; ZoneInfo('Europe/Warsaw')"
 mkdir -p "$HOME/.config/poranna-prasa" "$HOME/.termux/tasker" "$HOME/.local/state/poranna-prasa"
 export URL IP
 python - <<'PY'
-import json, os
+import ipaddress, json, os
 from pathlib import Path
+network = str(ipaddress.ip_network(os.environ['IP'] + '/24', strict=False))
 Path.home().joinpath('.config/poranna-prasa/config.json').write_text(
-    json.dumps({'base_url':os.environ['URL'], 'printer_ip':os.environ['IP'], 'printer_port':9100}, indent=2),
+    json.dumps({'base_url':os.environ['URL'], 'printer_ip':os.environ['IP'],
+                'printer_port':9100, 'home_subnet':network}, indent=2),
     encoding='utf-8')
 PY
 SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
