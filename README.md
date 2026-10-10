@@ -27,7 +27,7 @@ Repozytorium: **https://github.com/19pab84-beep/morning-newspaper** (publiczne).
 
 ## B. Android z Taskerem i Termux:Tasker
 
-Przyjmujemy, że Termux i Python masz już z testów komunikacji z drukarką. Instaluj **Termux:Tasker z tego samego źródła co Termux** (F-Droid z F-Droid; nie mieszaj podpisów APK). Przyda się [Tasker](https://tasker.joaoapps.com/) (płatny) oraz [Termux:Tasker](https://f-droid.org/packages/com.termux.tasker/).
+Przyjmujemy, że Termux i Python masz już z testów komunikacji z drukarką. **W Termuxie Python może nie znaleźć `Europe/Warsaw`; `android/setup.sh` automatycznie instaluje pakiet `tzdata`, który rozwiązuje ten problem.** Jeśli instalacja była wykonana przed tą poprawką, uruchom `python -m pip install tzdata` i ponów test drukowania. Instaluj **Termux:Tasker z tego samego źródła co Termux** (F-Droid z F-Droid; nie mieszaj podpisów APK). Przyda się [Tasker](https://tasker.joaoapps.com/) (płatny) oraz [Termux:Tasker](https://f-droid.org/packages/com.termux.tasker/).
 
 1. Zainstaluj **Termux:Tasker**, **Tasker** i nadaj uprawnienia opisane poniżej.
 2. W Termux sklonuj repozytorium:
