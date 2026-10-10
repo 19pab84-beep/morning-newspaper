@@ -40,7 +40,7 @@ Przyjmujemy, że Termux i Python masz już z testów komunikacji z drukarką. **
    ```
 
 3. Android → Ustawienia → Aplikacje → **Tasker → Uprawnienia → Dodatkowe uprawnienia → Run commands in Termux environment**. Zapewnij Termux i Tasker uprawnienia pracy w tle; nie wyłączaj automatyzacji oszczędzaniem baterii.
-4. Tasker → **Profiles → + → Time**, utwórz **3 osobne zadania** uruchamiane o **06:35, 06:45 i 06:55**, codziennie. W zadaniu: **Plugin → Termux:Tasker → Executable: `print_edition` → Execute in a terminal session: OFF** (działanie w tle). Dla czasu ustaw start równy godzinie zadania lub użyj zdarzenia uruchamiającego o wskazanej godzinie w swojej wersji Taskera.
+4. Tasker → **Profiles → + → Time**, ustaw **From 06:35 / To 06:55 / Every 10 Minutes** (zaznaczone wszystkie trzy pola). Oficjalny mechanizm Time uruchamia wtedy o 06:35, 06:45 i 06:55 jeden task. Nadaj mu nazwę `Poranna Prasa`. Akcja taska: **Plugin → Termux:Tasker → Configuration → Executable: `print_edition` → Execute in a terminal session: OFF** (praca w tle); argumenty pozostaw puste. Nie dodawaj flagi `--force` do harmonogramu. Android → Ustawienia → Aplikacje → **Tasker → Uprawnienia → Dodatkowe uprawnienia → Run commands in Termux environment**. W Tasker → Preferences → Monitor włącz **Use Reliable Alarms / When Off lub Always**, a dla Tasker/Termux/Termux:Tasker zezwól na pracę w tle (bez optymalizacji baterii). Przy pierwszym teście wykonaj akcję Taskera ręcznie i sprawdź `tail -n 20 ~/.local/state/poranna-prasa/print.log`; po wcześniejszym wydruku `--force` poprawną odpowiedzią będzie `POMINIĘTO DUPLIKAT` zamiast kolejnego wydruku.
 5. Przetestuj ręcznie (po publikacji pierwszego aktualnego numeru):
 
    ```bash
