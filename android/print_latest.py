@@ -15,7 +15,7 @@ from datetime import datetime, time
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, urlopen
-from zoneinfo import ZoneInfo
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 HOME = Path.home()
 CONFIG = HOME / '.config/poranna-prasa/config.json'
@@ -52,7 +52,11 @@ def same_host(base: str, final: str) -> bool:
 def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
                 allow_demo=False, force=False, now=None,
                 state_path=STATE) -> str:
-    now = now or datetime.now(ZoneInfo('Europe/Warsaw'))
+    if now is None:
+        try:
+            now = datetime.now(ZoneInfo('Europe/Warsaw'))
+        except ZoneInfoNotFoundError as exc:
+            raise ValueError('Brak bazy stref czasowych w Termuxie. Uruchom: python -m pip install tzdata') from exc
     day = now.date().isoformat()
     if not force and now.timetz().replace(tzinfo=None) >= time(7, 0):
         note('PO TERMINIE: po 07:00 nie drukuję automatycznie.')
