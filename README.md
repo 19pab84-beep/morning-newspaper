@@ -8,7 +8,7 @@ Automatyczna, czarno-biała gazeta A4: **GitHub Actions (RSS + opcjonalny OpenAI
 
 - **05:17** – pierwsza próba przygotowania wydania w chmurze.
 - **05:47** – zapasowa próba, jeśli dzisiejsze `latest.json` nie jest opublikowane.
-- **06:35, 06:45, 06:55** – Android sprawdza numer; drukuje tylko raz.
+- **06:35, 06:45, 06:55** – Android sprawdza numer; drukuje tylko raz i **wyłącznie gdy telefon ma lokalny adres w domowej sieci oraz port 9100 Brothera jest dostępny**. Poza domem pomija bez pobierania pliku.
 - **07:00** – docelowa godzina, do której papier ma być gotowy.
 
 GitHub Actions nie gwarantuje uruchomienia co do minuty, a Android potrafi ograniczać zadania w tle. **Nie jest to gwarancja wydruku o 07:00.** Zadania zaplanowano z zapasem; warto sprawdzić pierwsze 3–5 poranków. GitHub cron wspiera `timezone: Europe/Warsaw`, więc zmiana czasu PL jest automatyczna.
@@ -49,6 +49,19 @@ Przyjmujemy, że Termux i Python masz już z testów komunikacji z drukarką. **
 
    `--force` służy **tylko do ręcznego testowania**; może wydrukować duplikat. Normalny harmonogram go nie używa.
 6. Zablokuj ekran i ręcznie uruchom zadanie w Taskerze. Powtórz test w kolejne poranki. W przypadku zmiany IP drukarki edytuj `~/.config/poranna-prasa/config.json` (albo ponownie uruchom `setup.sh`). Rozważ rezerwację IP `192.168.101.9` w DHCP routera.
+
+### Tryb „tylko w domu”
+
+Skrypt przed pobieraniem pliku sprawdza lokalną trasę do Brothera oraz dostępność jego portu TCP 9100. Jeżeli telefon jest poza domową podsiecią (domyślnie dla drukarki 192.168.101.9 jest to `192.168.101.0/24`) albo drukarka jest niedostępna, zapisuje `POZA DOMEM` i kończy bez wydruku. Nawet ręczny `--force` nie omija tej kontroli. **Brak nadrabiania wydań po 07:00 ani drukowania zaległych gazet.**
+
+W Taskerze warto dodatkowo dodać do istniejącego profilu czasowego warunek **State → Net → WiFi Connected → SSID domowego Wi-Fi** (nazwę SSID można wybrać lupą). W ten sposób Tasker nie uruchomi skryptu na Wi-Fi w hotelu lub na danych komórkowych. Jeśli Android wymaga dostępu do lokalizacji do wykrywania SSID, nadaj Taskerowi stosowne uprawnienie. Gdy w danym momencie telefon nie jest w domowym Wi-Fi, gazeta będzie nadal dostępna jako PDF na GitHub Pages. **Kontrola adresacji nie jest niezawodnym dowodem fizycznej obecności**, szczególnie przy VPN; filtr SSID w Taskerze jest dodatkową ochroną.
+
+Po aktualizacji na Androidzie:
+```bash
+cd ~/morning-newspaper
+git pull
+bash android/setup.sh https://19pab84-beep.github.io/morning-newspaper 192.168.101.9
+```
 
 Wynik i błędy zapisują się w `~/.local/state/poranna-prasa/print.log`; informacja o ostatnim wysłanym wydaniu w `receipt.json`. Potwierdzenie oznacza **wysłanie do TCP 9100**, a nie fizyczne potwierdzenie papieru w zasobniku.
 
