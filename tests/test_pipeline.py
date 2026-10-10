@@ -63,6 +63,7 @@ class TestAndroid(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             state = Path(tmp)/'receipt.json'
             with patch.object(phone, 'fetch', side_effect=resps) as fetcher, \
+                 patch.object(phone, 'home_network_available', return_value=True), \
                  patch.object(phone.socket, 'create_connection', return_value=sock), \
                  patch.object(phone, 'note'):
                 status = phone.print_issue(url,'192.168.101.9',now=now,state_path=state)
@@ -95,6 +96,20 @@ class TestAndroid(unittest.TestCase):
     def test_https_required(self):
         with self.assertRaises(ValueError):
             phone.print_issue('http://insecure.example','127.0.0.1',now=datetime(2026,10,10,6,40,tzinfo=ZoneInfo('Europe/Warsaw')))
+
+    def test_away_skips_download_even_when_forced(self):
+        now = datetime(2026,10,10,6,40,tzinfo=ZoneInfo('Europe/Warsaw'))
+        with patch.object(phone, 'home_network_available', return_value=False), \
+             patch.object(phone, 'fetch') as fetcher, \
+             patch.object(phone, 'note'):
+            status = phone.print_issue('https://example.github.io/prasa',
+                                       '192.168.101.9', now=now, force=True)
+        self.assertEqual(status, 'away')
+        fetcher.assert_not_called()
+
+    def test_home_network_rejects_printer_outside_subnet(self):
+        with self.assertRaises(ValueError):
+            phone.home_network_available('192.168.101.9', home_subnet='10.0.0.0/24')
 
     def test_after_deadline(self):
         with patch.object(phone, 'note'):
