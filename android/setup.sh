@@ -9,6 +9,9 @@ fi
 URL="${1%/}"
 IP="${2:-192.168.101.9}"
 case "$URL" in https://*) ;; *) echo 'Podaj adres HTTPS do GitHub Pages'; exit 1;; esac
+echo "Sprawdzam bazę stref czasowych dla Termuxa (Europe/Warsaw)..."
+python -m pip install --disable-pip-version-check tzdata
+python -c "from zoneinfo import ZoneInfo; ZoneInfo('Europe/Warsaw')"
 mkdir -p "$HOME/.config/poranna-prasa" "$HOME/.termux/tasker" "$HOME/.local/state/poranna-prasa"
 export URL IP
 python - <<'PY'
@@ -26,4 +29,4 @@ TASK
 sed -i "s|__SCRIPT_PATH__|$SCRIPT_DIR/print_latest.py|" "$HOME/.termux/tasker/print_edition"
 chmod 700 "$HOME/.termux" "$HOME/.termux/tasker" "$HOME/.termux/tasker/print_edition"
 echo 'OK. W Tasker -> Plugin -> Termux:Tasker -> Executable: print_edition; Background: ON.'
-echo 'Ręczny test (o dowolnej porze): python ~/poranna-prasa/android/print_latest.py --force'
+echo 'Ręczny test (o dowolnej porze): python ~/morning-newspaper/android/print_latest.py --force'
