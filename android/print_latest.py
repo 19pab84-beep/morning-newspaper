@@ -7,6 +7,7 @@ from __future__ import annotations
 import argparse
 import fcntl
 import hashlib
+import ipaddress
 import json
 import os
 import socket
@@ -49,9 +50,33 @@ def same_host(base: str, final: str) -> bool:
             a.hostname == b.hostname)
 
 
+def home_network_available(printer_ip: str, port: int = 9100, home_subnet: str | None = None) -> bool:
+    """Require a locally routed IPv4 address in the home subnet AND a reachable printer.
+
+    The UDP connect only inspects the chosen local route; it sends no data.
+    A TCP connect is then used as a short reachability check (no print data).
+    This deliberately fails closed on mobile data or other Wi-Fi networks.
+    """
+    net = ipaddress.ip_network(home_subnet or f'{printer_ip}/24', strict=False)
+    ip = ipaddress.ip_address(printer_ip)
+    if net.version != 4 or ip not in net:
+        raise ValueError('Adres drukarki nie nalezy do skonfigurowanej sieci domowej')
+
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as route:
+            route.connect((printer_ip, port))
+            local_ip = ipaddress.ip_address(route.getsockname()[0])
+        if local_ip not in net:
+            return False
+        with socket.create_connection((printer_ip, port), timeout=3):
+            return True
+    except (OSError, ValueError):
+        return False
+
+
 def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
                 allow_demo=False, force=False, now=None,
-                state_path=STATE) -> str:
+                state_path=STATE, home_subnet=None) -> str:
     if now is None:
         try:
             now = datetime.now(ZoneInfo('Europe/Warsaw'))
@@ -64,6 +89,12 @@ def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
     base = base_url.rstrip('/') + '/'
     if not urlsplit(base).scheme == 'https':
         raise ValueError('Adres wydania musi używać HTTPS')
+
+    # No download, no connection and no print outside the home LAN.
+    # --force does NOT override this restriction.
+    if not home_network_available(printer_ip, port, home_subnet):
+        note('POZA DOMEM: brak lokalnego polaczenia z drukarka; pomijam wydruk.')
+        return 'away'
 
     raw, resolved = fetch(base + 'latest.json?ts=' + now.strftime('%Y%m%d%H%M'), limit=200_000)
     if not same_host(base, resolved):
@@ -136,7 +167,8 @@ def main():
         with lockfile.open('w') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
             print_issue(conf['base_url'], conf['printer_ip'], conf.get('printer_port', 9100),
-                        allow_demo=args.allow_demo, force=args.force)
+                        allow_demo=args.allow_demo, force=args.force,
+                        home_subnet=conf.get('home_subnet'))
         return 0
     except (OSError, ValueError, KeyError, TypeError) as e:
         note(f'BŁĄD: {type(e).__name__}: {e}')
