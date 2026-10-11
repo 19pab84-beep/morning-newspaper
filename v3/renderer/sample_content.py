@@ -86,7 +86,7 @@ P3=[
 BACK={
 'letters':[
  ('Korespondencja z osiedla','„W piątek dostaliśmy cztery egzemplarze gazety. W sobotę listonosz przyniósł tylko trzy. Czy czwarty był przeznaczony dla lokalu, który skreślono z listy?” — Czytelniczka z Brzozowej.'),
- ('Odpowiada redakcja','Nie prowadzimy ewidencji kolportażu w lokalach, których istnienia nie potwierdzono. Uprzejmie prosimy o zachowanie koperty. Jeśli ma ona pieczątkę 4519, nie należy jej otwierać przed konsultacją.'),
+ ('Odpowiada redakcja','Nie prowadzimy ewidencji kolportażu w lokalach, których istnienia nie potwierdzono. Uprzejmie prosimy o zachowanie koperty. Jeśli ma pieczątkę nieznanej kancelarii, nie należy jej otwierać przed konsultacją.'),
  ('Krótki list','„W reklamie zegarmistrza napisano, że oddaje utracone minuty. Czy mogą państwo podać adres?” — Zbigniew L. Odpowiadamy: ogłoszeniodawca nie podał numeru domu.'),
 ],
 'ads':[
@@ -164,7 +164,7 @@ BACK['letters'].extend([
 ])
 BACK['notes'].extend([
 ('CO W KALENDARZU?','W poniedziałek wspólnota rozpatrzy projekt ujednolicenia tabliczek adresowych. Mieszkańcy mogą oglądać wzory w kancelarii w godzinach 8–14.'),
-('DZIŚ W ARCHIWUM','Kolejny zeszyt lokalnego archiwum zostanie udostępniony po potwierdzeniu sygnatury. Wniosek 4519 odłożono do wyjaśnienia daty nadania.'),
+('DZIŚ W ARCHIWUM','Kolejny zeszyt lokalnego archiwum zostanie udostępniony po potwierdzeniu sygnatury. Niekompletny wniosek odłożono do wyjaśnienia daty nadania.'),
 ])
 
 # Zachowaj limit trzech kolumn; pomijamy po jednym akapicie przeznaczonym do kolejnego wydania.
