@@ -1,5 +1,8 @@
 # PORANNA PRASA 🗞️
 
+> **Ważne — nowy standard redakcyjny V3 (gałąź rozwojowa):** [Konstytucja Porannej Prasy](v3/docs/KONSTYTUCJA_PORANNEJ_PRASY.md) jest nadrzędnym dokumentem wyglądu i tonu gazety; [32 działy i rotacja](v3/docs/DZIALY_I_ROTACJA.md) oraz [katalog maszynowy 128 formatów](v3/editorial/departments.yaml) definiują wybór treści. Docelowo dokładnie 4 strony A4, realistyczny gazetowy skład, komiksy jako obrazki, sudoku 9×9 i pamięć uniwersum. **Nie jest jeszcze wdrożony do porannego workflow na main.**
+
+
 Automatyczna, czarno-biała gazeta A4: **GitHub Actions (RSS + opcjonalny OpenAI API) → PDF + PRN → GitHub Pages → Android/Termux/Tasker → Brother HL-1210WE**.
 
 **Stan v0.1:** generator i konwerter działają w testach lokalnych. Użytkownik wcześniej fizycznie wydrukował pojedynczą stronę przygotowaną przez konwerter Linux oraz plik PRN wysłany przez Android. **Nie przetestowano jeszcze wielostronicowego wydruku w pełni bezobsługowego na zablokowanym Androidzie ani rzeczywistego uruchomienia workflow w GitHub.**
