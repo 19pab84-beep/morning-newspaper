@@ -2,18 +2,24 @@
 
 **Status:** zaprojektowana orkiestracja i walidatory, niepodłączona jeszcze do produkcyjnego API. Odpalanie na GitHub Actions wymaga klucza API, magazynu prywatnego lore i testów kosztów. Działająca gałąź `main` nie jest modyfikowana.
 
+## Zasady nadrzędne (obowiązkowe przed każdym wydaniem)
+
+Przed generowaniem **zawsze** przeczytaj: `../docs/KONSTYTUCJA_PORANNEJ_PRASY.md`, `../docs/FOUR_PAGE_FOLIO_CONTRACT.md`, `../docs/DZIALY_I_ROTACJA.md`, a następnie katalog `departments.yaml`. W razie sprzeczności nadrzędna jest **konstytucja**, a w sprawach paginacji kontrakt **dokładnie 4 stron A4**.
+
+Każdy z agentów musi znać różnicę między działem a rubryką, bieżący zestaw ostatnich tematów i udokumentowane źródła. Agent do layoutu ma tworzyć prawdziwy złożony PDF, a nie wygenerowaną grafikę całej strony. Obowiązuje przyjęty wizualny look „prawdziwej gazety” i obrazkowe komiksy.
+
 ## 8 ról i ścisła kolejność
 
 | Agent | Wejście | Wyjście | Twardy warunek |
 |---|---|---|---|
-| 1. Redaktor prowadzący | preferencje, katalog rubryk, ostatnie 30 numerów | `issue_plan.json` (kąty, 4–6 str., budżety słów, rubryki) | minimum 4 rotujące rubryki, brak przymusowych newsów |
+| 1. Redaktor prowadzący | preferencje, katalog rubryk, ostatnie 30 numerów | `issue_plan.json` (kąty, dokładnie 4 str. A4, budżety słów, rubryki) | minimum 4 rotujące rubryki, brak przymusowych newsów |
 | 2. Archiwista kanonu | prywatne `canon.yaml`, `ledger.json`, `arcs.yaml`, poprzednie numery | kontekst z ID faktów, **tylko ustalone informacje** | nie pisze jeszcze tekstu, nie zmienia kanonu |
 | 3. Reporter badawczy | plan tekstów realnych i źródła | `source_packets.json` z faktami i URL | wątpliwe fakty → pomiń / oznacz jako opinię; żadne wymyślone cytaty realnych ludzi |
 | 4. Autorzy | plan, pakiety źródeł, oczekiwana długość | artykuły w 4 typach | 2–4 **konkretne** przykłady / nazwy / mechaniki na tekst; fikcja w stylu Puls Nocy |
 | 5. Kontroler fabuły | wszystkie artykuły + kanon + graf zależności | lista błędów continuity, proponowane poprawki | nie ujawnia wiedzy z przyszłych numerów; nie naprawia sprzeczności po cichu |
 | 6. Mistrz zagadek | scenariusz sezonu, lista tropów, redagowane rubryki | 1–3 dopuszczone tropy + prywatne rozwiązania | każdy trop ma ID, nośnik, późniejszy payoff i sposób sprawdzenia; brak przypadkowych szyfrów |
 | 7. Redaktor językowy | kompletny numer i źródła | spójne teksty, krótkie leady, nienadmuchane akapity | wycina uogólnienia; jeden artykuł = jedna wyraźna teza / śledztwo |
-| 8. Łamacz i kontroler druku | zatwierdzony pakiet artykułów | PDF, PRN i manifest | brak przepełnień, brak pustych połówek stron, **strona ogłoszeń ostatnia**, 4×4 sudoku z jednym rozwiązaniem |
+| 8. Łamacz i kontroler druku | zatwierdzony pakiet artykułów | PDF, PRN i manifest | brak przepełnień, brak pustych połówek stron, **ostatnia strona gazetowa fizycznie na s. 4**, sudoku **9×9 z jednym rozwiązaniem**, komiks jako osadzony rysunek |
 
 ## Rozdział prywatnej prawdy od gazety
 
@@ -41,5 +47,5 @@ Artykuł o grze musi nazwać grę, 2–3 mechaniki i konkretną decyzję dla gra
 1. Zatwierdzić ton i makietę na papierze.
 2. Utworzyć **prywatny** magazyn lore (Drive folder ograniczony do właściciela lub prywatne repo, osobny token dostępu tylko do odczytu w workflow).
 3. Podłączyć API, limity kosztów i model odpowiedni do każdego etapu.
-4. Test 7 numerów *offline* + symulacja 60 wydań: rejestrować powtórzenia, sprzeczności i nierozwiązane wskazówki.
+4. Test 7 numerów *offline* + symulacja 60 wydań, w tym pokrycie 32 działów i uniknięcie powtórzeń: rejestrować powtórzenia, sprzeczności i nierozwiązane wskazówki.
 5. Dopiero wtedy przełączyć workflow `main` i sprawdzić ponownie Brothera.
