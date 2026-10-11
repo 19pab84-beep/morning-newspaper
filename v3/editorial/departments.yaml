@@ -1,0 +1,995 @@
+{
+  "version": 1,
+  "status": "catalog_v3_not_production",
+  "department_count": 32,
+  "format_count": 128,
+  "policy": {
+    "issue_pages": 4,
+    "pages": [
+      "front",
+      "inside",
+      "inside",
+      "back"
+    ],
+    "max_pieces_main": 3,
+    "rotating_short_min": 5,
+    "rotating_short_max": 8,
+    "fiction_front": 1,
+    "max_real_news": 1,
+    "real_news_default": 0,
+    "prefer_different_desks_for_features": true,
+    "repeat_same_main_subject_within_issues": 4,
+    "repeat_same_game_within_days": 21,
+    "avoid_same_department_dominating_consecutive_issues": 2,
+    "mandatory_surprise_from_underrepresented_desk": true,
+    "min_saved_history_issues": 60,
+    "max_hidden_clues": 3,
+    "private_lore_must_not_publish": true,
+    "comic_raster_required": true,
+    "sudoku_size": 9,
+    "sudoku_unique_solution": true
+  },
+  "departments": [
+    {
+      "id": "kronika_miasta",
+      "desk_code": "U",
+      "desk": "UNIWERSUM I MIASTO",
+      "title": "Kronika Brzozowej",
+      "kind": "fiction",
+      "slots": [
+        "front",
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 2,
+      "formats": [
+        {
+          "id": "kronika_miasta_1",
+          "title": "Zgłoszenie lokatorskie"
+        },
+        {
+          "id": "kronika_miasta_2",
+          "title": "Zapis dyżurnego"
+        },
+        {
+          "id": "kronika_miasta_3",
+          "title": "Mapa nieobecności"
+        },
+        {
+          "id": "kronika_miasta_4",
+          "title": "Co widzieli sąsiedzi"
+        }
+      ]
+    },
+    {
+      "id": "archiwum_a017",
+      "desk_code": "U",
+      "desk": "UNIWERSUM I MIASTO",
+      "title": "Archiwum A-017",
+      "kind": "fiction",
+      "slots": [
+        "front",
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 2,
+      "formats": [
+        {
+          "id": "archiwum_a017_1",
+          "title": "Dokument z marginesu"
+        },
+        {
+          "id": "archiwum_a017_2",
+          "title": "Chronologia niezgodności"
+        },
+        {
+          "id": "archiwum_a017_3",
+          "title": "Fotokopia z teczki"
+        },
+        {
+          "id": "archiwum_a017_4",
+          "title": "Indeks zaginionych zapisów"
+        }
+      ]
+    },
+    {
+      "id": "urzedy_osiedla",
+      "desk_code": "U",
+      "desk": "UNIWERSUM I MIASTO",
+      "title": "Biuro, rozkład, urząd",
+      "kind": "fiction",
+      "slots": [
+        "front",
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 2,
+      "formats": [
+        {
+          "id": "urzedy_osiedla_1",
+          "title": "Komunikat spółdzielni"
+        },
+        {
+          "id": "urzedy_osiedla_2",
+          "title": "Rozkład jazdy z wyjątkiem"
+        },
+        {
+          "id": "urzedy_osiedla_3",
+          "title": "Rejestr awarii"
+        },
+        {
+          "id": "urzedy_osiedla_4",
+          "title": "Sprostowanie z pieczęcią"
+        }
+      ]
+    },
+    {
+      "id": "folklor_osiedla",
+      "desk_code": "U",
+      "desk": "UNIWERSUM I MIASTO",
+      "title": "Folklor osiedla",
+      "kind": "fiction",
+      "slots": [
+        "front",
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 2,
+      "formats": [
+        {
+          "id": "folklor_osiedla_1",
+          "title": "Legenda jednego bloku"
+        },
+        {
+          "id": "folklor_osiedla_2",
+          "title": "Przewodnik po adresach"
+        },
+        {
+          "id": "folklor_osiedla_3",
+          "title": "Sąsiedzki przepis"
+        },
+        {
+          "id": "folklor_osiedla_4",
+          "title": "Mapa miejsc, których brak"
+        }
+      ]
+    },
+    {
+      "id": "zagadki_historii",
+      "desk_code": "R",
+      "desk": "PRAWDZIWE OSOBLIWOŚCI",
+      "title": "Zagadki historii",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "zagadki_historii_1",
+          "title": "Dokument kontra legenda"
+        },
+        {
+          "id": "zagadki_historii_2",
+          "title": "Co naprawdę wiemy"
+        },
+        {
+          "id": "zagadki_historii_3",
+          "title": "Spór badaczy"
+        },
+        {
+          "id": "zagadki_historii_4",
+          "title": "Jedna niewyjaśniona data"
+        }
+      ]
+    },
+    {
+      "id": "atlas_osobliwosci",
+      "desk_code": "R",
+      "desk": "PRAWDZIWE OSOBLIWOŚCI",
+      "title": "Atlas osobliwości",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "atlas_osobliwosci_1",
+          "title": "Niecodzienna granica"
+        },
+        {
+          "id": "atlas_osobliwosci_2",
+          "title": "Miasto, które znikło"
+        },
+        {
+          "id": "atlas_osobliwosci_3",
+          "title": "Dziwna mapa"
+        },
+        {
+          "id": "atlas_osobliwosci_4",
+          "title": "Jedno miejsce na Ziemi"
+        }
+      ]
+    },
+    {
+      "id": "natura_nieoczywista",
+      "desk_code": "R",
+      "desk": "PRAWDZIWE OSOBLIWOŚCI",
+      "title": "Nieoczywista przyroda",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "natura_nieoczywista_1",
+          "title": "Pasożyt pod lupą"
+        },
+        {
+          "id": "natura_nieoczywista_2",
+          "title": "Zwierzę bez odpowiednika"
+        },
+        {
+          "id": "natura_nieoczywista_3",
+          "title": "Terenowy notatnik"
+        },
+        {
+          "id": "natura_nieoczywista_4",
+          "title": "Popularny mit obalony"
+        }
+      ]
+    },
+    {
+      "id": "archeologia_codziennosci",
+      "desk_code": "R",
+      "desk": "PRAWDZIWE OSOBLIWOŚCI",
+      "title": "Archeologia codzienności",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "archeologia_codziennosci_1",
+          "title": "Zapomniany przedmiot"
+        },
+        {
+          "id": "archeologia_codziennosci_2",
+          "title": "Patent, który przegrał"
+        },
+        {
+          "id": "archeologia_codziennosci_3",
+          "title": "Zamknięta fabryka"
+        },
+        {
+          "id": "archeologia_codziennosci_4",
+          "title": "Jak działało kiedyś"
+        }
+      ]
+    },
+    {
+      "id": "sztuczna_inteligencja",
+      "desk_code": "T",
+      "desk": "TECHNIKA I SYSTEMY",
+      "title": "Sztuczna inteligencja",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "sztuczna_inteligencja_1",
+          "title": "Model pod mikroskopem"
+        },
+        {
+          "id": "sztuczna_inteligencja_2",
+          "title": "Eksperyment z halucynacją"
+        },
+        {
+          "id": "sztuczna_inteligencja_3",
+          "title": "AI w praktyce"
+        },
+        {
+          "id": "sztuczna_inteligencja_4",
+          "title": "Koszt i kompromis"
+        }
+      ]
+    },
+    {
+      "id": "retro_technologie",
+      "desk_code": "T",
+      "desk": "TECHNIKA I SYSTEMY",
+      "title": "Archiwum technologii",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "retro_technologie_1",
+          "title": "Nośnik miesiąca"
+        },
+        {
+          "id": "retro_technologie_2",
+          "title": "Protokół z przeszłości"
+        },
+        {
+          "id": "retro_technologie_3",
+          "title": "Historia jednej awarii"
+        },
+        {
+          "id": "retro_technologie_4",
+          "title": "Jak ocalić stare dane"
+        }
+      ]
+    },
+    {
+      "id": "inzynieria_przedmiotow",
+      "desk_code": "T",
+      "desk": "TECHNIKA I SYSTEMY",
+      "title": "Inżynieria rzeczy",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "inzynieria_przedmiotow_1",
+          "title": "Dlaczego to działa"
+        },
+        {
+          "id": "inzynieria_przedmiotow_2",
+          "title": "Sekcja mechanizmu"
+        },
+        {
+          "id": "inzynieria_przedmiotow_3",
+          "title": "Naprawa z głową"
+        },
+        {
+          "id": "inzynieria_przedmiotow_4",
+          "title": "Mit warsztatowy"
+        }
+      ]
+    },
+    {
+      "id": "dane_i_architektura",
+      "desk_code": "T",
+      "desk": "TECHNIKA I SYSTEMY",
+      "title": "Dane i architektura",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "dane_i_architektura_1",
+          "title": "Pułapka w SQL"
+        },
+        {
+          "id": "dane_i_architektura_2",
+          "title": "Postmortem pipeline’u"
+        },
+        {
+          "id": "dane_i_architektura_3",
+          "title": "Wybór architekta"
+        },
+        {
+          "id": "dane_i_architektura_4",
+          "title": "Co mówią metryki"
+        }
+      ]
+    },
+    {
+      "id": "projektowanie_gier",
+      "desk_code": "G",
+      "desk": "GRY I SYSTEMY",
+      "title": "Sekrety game designu",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "projektowanie_gier_1",
+          "title": "Jedna genialna mechanika"
+        },
+        {
+          "id": "projektowanie_gier_2",
+          "title": "Boss jako nauczyciel"
+        },
+        {
+          "id": "projektowanie_gier_3",
+          "title": "Pętla nagrody"
+        },
+        {
+          "id": "projektowanie_gier_4",
+          "title": "Równowaga ryzyka"
+        }
+      ]
+    },
+    {
+      "id": "nintendo",
+      "desk_code": "G",
+      "desk": "GRY I SYSTEMY",
+      "title": "Nintendo i handheldy",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "nintendo_1",
+          "title": "Zapomniany kartridż"
+        },
+        {
+          "id": "nintendo_2",
+          "title": "Jeden tytuł po latach"
+        },
+        {
+          "id": "nintendo_3",
+          "title": "Sprzętowy dziwoląg"
+        },
+        {
+          "id": "nintendo_4",
+          "title": "Dlaczego ta Zelda działa"
+        }
+      ]
+    },
+    {
+      "id": "retro_gaming",
+      "desk_code": "G",
+      "desk": "GRY I SYSTEMY",
+      "title": "Archeologia gier",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "retro_gaming_1",
+          "title": "Martwy gatunek"
+        },
+        {
+          "id": "retro_gaming_2",
+          "title": "Port z innej epoki"
+        },
+        {
+          "id": "retro_gaming_3",
+          "title": "Granice starego sprzętu"
+        },
+        {
+          "id": "retro_gaming_4",
+          "title": "Nieznany klasyk"
+        }
+      ]
+    },
+    {
+      "id": "roguelike",
+      "desk_code": "G",
+      "desk": "GRY I SYSTEMY",
+      "title": "Roguelike laboratoryjnie",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "roguelike_1",
+          "title": "Decyzja jednego runu"
+        },
+        {
+          "id": "roguelike_2",
+          "title": "Sekret synergii"
+        },
+        {
+          "id": "roguelike_3",
+          "title": "Jak rośnie trudność"
+        },
+        {
+          "id": "roguelike_4",
+          "title": "Śmierć jako nauka"
+        }
+      ]
+    },
+    {
+      "id": "rpg_solo",
+      "desk_code": "G",
+      "desk": "GRY I SYSTEMY",
+      "title": "Samotny gracz RPG",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "rpg_solo_1",
+          "title": "Test mechaniki"
+        },
+        {
+          "id": "rpg_solo_2",
+          "title": "Autopsja paragrafu"
+        },
+        {
+          "id": "rpg_solo_3",
+          "title": "Przygoda w pudełku"
+        },
+        {
+          "id": "rpg_solo_4",
+          "title": "Generator zdarzeń"
+        }
+      ]
+    },
+    {
+      "id": "planszowki",
+      "desk_code": "G",
+      "desk": "GRY I SYSTEMY",
+      "title": "Planszówki do masterowania",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "planszowki_1",
+          "title": "Ruch otwarcia"
+        },
+        {
+          "id": "planszowki_2",
+          "title": "Projekt asymetrii"
+        },
+        {
+          "id": "planszowki_3",
+          "title": "Taktyka jednej tury"
+        },
+        {
+          "id": "planszowki_4",
+          "title": "Co zmienia replayability"
+        }
+      ]
+    },
+    {
+      "id": "kino_grozy",
+      "desk_code": "H",
+      "desk": "HORROR I LITERATURA",
+      "title": "Kino grozy",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "kino_grozy_1",
+          "title": "Anatomia jednej sceny"
+        },
+        {
+          "id": "kino_grozy_2",
+          "title": "Zapomniany horror"
+        },
+        {
+          "id": "kino_grozy_3",
+          "title": "Finał bez spoilerów"
+        },
+        {
+          "id": "kino_grozy_4",
+          "title": "Jak film manipuluje kadrem"
+        }
+      ]
+    },
+    {
+      "id": "literatura_weird",
+      "desk_code": "H",
+      "desk": "HORROR I LITERATURA",
+      "title": "Literatura niesamowita",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "literatura_weird_1",
+          "title": "Recenzja opowiadania"
+        },
+        {
+          "id": "literatura_weird_2",
+          "title": "Autor i jego obsesja"
+        },
+        {
+          "id": "literatura_weird_3",
+          "title": "Motyw literacki"
+        },
+        {
+          "id": "literatura_weird_4",
+          "title": "Dziwna półka czytelnika"
+        }
+      ]
+    },
+    {
+      "id": "scp_i_archiwa",
+      "desk_code": "H",
+      "desk": "HORROR I LITERATURA",
+      "title": "SCP i inne archiwa",
+      "kind": "mixed",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "scp_i_archiwa_1",
+          "title": "SCP z przypisami"
+        },
+        {
+          "id": "scp_i_archiwa_2",
+          "title": "Oryginalna anomalia"
+        },
+        {
+          "id": "scp_i_archiwa_3",
+          "title": "Karta obiektu"
+        },
+        {
+          "id": "scp_i_archiwa_4",
+          "title": "Archiwalny komentarz"
+        }
+      ]
+    },
+    {
+      "id": "analogowa_estetyka",
+      "desk_code": "H",
+      "desk": "HORROR I LITERATURA",
+      "title": "Analogowe niepokoje",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "analogowa_estetyka_1",
+          "title": "Anatomia VHS"
+        },
+        {
+          "id": "analogowa_estetyka_2",
+          "title": "Praktyczne efekty"
+        },
+        {
+          "id": "analogowa_estetyka_3",
+          "title": "Typografia grozy"
+        },
+        {
+          "id": "analogowa_estetyka_4",
+          "title": "Błąd CRT jako estetyka"
+        }
+      ]
+    },
+    {
+      "id": "ciezka_muzyka",
+      "desk_code": "M",
+      "desk": "MUZYKA, OBRAZ, KULTURA",
+      "title": "Ciężki odsłuch",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "ciezka_muzyka_1",
+          "title": "Autopsja utworu"
+        },
+        {
+          "id": "ciezka_muzyka_2",
+          "title": "Jeden breakdown"
+        },
+        {
+          "id": "ciezka_muzyka_3",
+          "title": "Zapomniane wydawnictwo"
+        },
+        {
+          "id": "ciezka_muzyka_4",
+          "title": "Dwa zaskakujące zespoły"
+        }
+      ]
+    },
+    {
+      "id": "dzwiek_i_cisza",
+      "desk_code": "M",
+      "desk": "MUZYKA, OBRAZ, KULTURA",
+      "title": "Dźwięk i cisza",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "dzwiek_i_cisza_1",
+          "title": "Akustyka strachu"
+        },
+        {
+          "id": "dzwiek_i_cisza_2",
+          "title": "Instrument osobliwy"
+        },
+        {
+          "id": "dzwiek_i_cisza_3",
+          "title": "Sekret studia"
+        },
+        {
+          "id": "dzwiek_i_cisza_4",
+          "title": "Scena bez muzyki"
+        }
+      ]
+    },
+    {
+      "id": "komiks_i_rysunek",
+      "desk_code": "M",
+      "desk": "MUZYKA, OBRAZ, KULTURA",
+      "title": "Komiks i ilustracja",
+      "kind": "mixed",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "komiks_i_rysunek_1",
+          "title": "Blok 3A: 3–4 kadry"
+        },
+        {
+          "id": "komiks_i_rysunek_2",
+          "title": "Gag obrazkowy"
+        },
+        {
+          "id": "komiks_i_rysunek_3",
+          "title": "Okiem rysownika"
+        },
+        {
+          "id": "komiks_i_rysunek_4",
+          "title": "Reklama, która żyje"
+        }
+      ]
+    },
+    {
+      "id": "kinowe_peryferie",
+      "desk_code": "M",
+      "desk": "MUZYKA, OBRAZ, KULTURA",
+      "title": "Kultura z pobocza",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "kinowe_peryferie_1",
+          "title": "Krótki metraż"
+        },
+        {
+          "id": "kinowe_peryferie_2",
+          "title": "Nieznany twórca"
+        },
+        {
+          "id": "kinowe_peryferie_3",
+          "title": "Plakat pod lupą"
+        },
+        {
+          "id": "kinowe_peryferie_4",
+          "title": "Kultura z archiwum"
+        }
+      ]
+    },
+    {
+      "id": "psychologia",
+      "desk_code": "P",
+      "desk": "UMYSŁ I ZAGADKI",
+      "title": "Psychologia niepokoju",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "psychologia_1",
+          "title": "Błąd percepcji"
+        },
+        {
+          "id": "psychologia_2",
+          "title": "Jak pamięć oszukuje"
+        },
+        {
+          "id": "psychologia_3",
+          "title": "Dlaczego boimy się pustki"
+        },
+        {
+          "id": "psychologia_4",
+          "title": "Złudzenie i wyjaśnienie"
+        }
+      ]
+    },
+    {
+      "id": "matematyka",
+      "desk_code": "P",
+      "desk": "UMYSŁ I ZAGADKI",
+      "title": "Matematyka z charakterem",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "matematyka_1",
+          "title": "Paradoks liczb"
+        },
+        {
+          "id": "matematyka_2",
+          "title": "Zagadka logiczna"
+        },
+        {
+          "id": "matematyka_3",
+          "title": "Szyfr do rozwiązania"
+        },
+        {
+          "id": "matematyka_4",
+          "title": "Dowód na serwetce"
+        }
+      ]
+    },
+    {
+      "id": "filozofia",
+      "desk_code": "P",
+      "desk": "UMYSŁ I ZAGADKI",
+      "title": "Filozofia bez patosu",
+      "kind": "sourced",
+      "slots": [
+        "inside",
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "filozofia_1",
+          "title": "Eksperyment myślowy"
+        },
+        {
+          "id": "filozofia_2",
+          "title": "Spór o tożsamość"
+        },
+        {
+          "id": "filozofia_3",
+          "title": "Paradoks decyzji"
+        },
+        {
+          "id": "filozofia_4",
+          "title": "Jedna idea w praktyce"
+        }
+      ]
+    },
+    {
+      "id": "listy_i_redakcja",
+      "desk_code": "O",
+      "desk": "OSTATNIA STRONA",
+      "title": "Czytelnicy i redakcja",
+      "kind": "mixed",
+      "slots": [
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "listy_i_redakcja_1",
+          "title": "List od czytelnika"
+        },
+        {
+          "id": "listy_i_redakcja_2",
+          "title": "Odpowiedź redakcji"
+        },
+        {
+          "id": "listy_i_redakcja_3",
+          "title": "Ankieta numeru"
+        },
+        {
+          "id": "listy_i_redakcja_4",
+          "title": "Sprostowanie z pamięcią"
+        }
+      ]
+    },
+    {
+      "id": "ogloszenia_drobne",
+      "desk_code": "O",
+      "desk": "OSTATNIA STRONA",
+      "title": "Ogłoszenia i usługi",
+      "kind": "fiction",
+      "slots": [
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "ogloszenia_drobne_1",
+          "title": "Sprzedam / zamienię"
+        },
+        {
+          "id": "ogloszenia_drobne_2",
+          "title": "Zgubiono / znaleziono"
+        },
+        {
+          "id": "ogloszenia_drobne_3",
+          "title": "Usługi sąsiedzkie"
+        },
+        {
+          "id": "ogloszenia_drobne_4",
+          "title": "Reklama z drugim dnem"
+        }
+      ]
+    },
+    {
+      "id": "codzienne_drobiazgi",
+      "desk_code": "O",
+      "desk": "OSTATNIA STRONA",
+      "title": "Drobiazgi na koniec",
+      "kind": "mixed",
+      "slots": [
+        "back"
+      ],
+      "cooldown_issues": 4,
+      "formats": [
+        {
+          "id": "codzienne_drobiazgi_1",
+          "title": "Sudoku 9×9"
+        },
+        {
+          "id": "codzienne_drobiazgi_2",
+          "title": "Cytat z podpisem"
+        },
+        {
+          "id": "codzienne_drobiazgi_3",
+          "title": "Żart i nekrolog"
+        },
+        {
+          "id": "codzienne_drobiazgi_4",
+          "title": "Tego dnia naprawdę"
+        }
+      ]
+    }
+  ]
+}
