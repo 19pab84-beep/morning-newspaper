@@ -28,9 +28,13 @@ def choose_rubrics(catalog: dict, history: list[dict], issue_no: int, count: int
     for entry in candidates:
         past = [i['issue_no'] for i in history if entry['id'] in i.get('rubrics',[])]
         distance = issue_no - max(past) if past else issue_no + 4
-        if distance <= max(cfg.get('avoid_repeat_last_issues', 2), entry.get('cooldown_issues', 2)):
+        # Hard rule: no repeat in the previous two issues. Longer rubric
+        # cooldowns are soft preferences, otherwise 60-day rotation deadlocks.
+        if distance <= cfg.get('avoid_repeat_last_issues', 2):
             continue
-        eligible.append((distance * entry['weight'] + rng.random(), entry['id']))
+        desired = entry.get('cooldown_issues', 2)
+        cooldown_penalty = 50 * max(0, desired - distance)
+        eligible.append((distance * entry['weight'] - cooldown_penalty + rng.random(), entry['id']))
     eligible.sort(reverse=True)
     selected = [rubric for _,rubric in eligible[:count]]
     if len(selected) < min(count, cfg.get('min_rotating_per_issue', 4)):
