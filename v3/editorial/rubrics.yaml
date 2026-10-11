@@ -1,0 +1,194 @@
+version: 1
+rules:
+  regular_front:
+  - reportaz_dnia
+  fixed_back:
+  - ogloszenia
+  - listy
+  min_rotating_per_issue: 4
+  max_rotating_per_issue: 9
+  avoid_repeat_last_issues: 2
+  normal_real_news_quota: 0
+  max_hidden_clues_per_issue: 3
+  fiction_notice_required: true
+rubrics:
+- id: reportaz_dnia
+  title: Puls Nocy / reportaż dnia
+  kind: fiction
+  placement: front
+  weight: 10
+  cooldown_issues: 1
+- id: dossier_dnia
+  title: Teczka redakcji
+  kind: fiction
+  placement: inside
+  weight: 7
+  cooldown_issues: 3
+- id: lokalne_ostrzezenia
+  title: Ostrzeżenia lokalne
+  kind: fiction
+  placement: back
+  weight: 8
+  cooldown_issues: 2
+- id: listy
+  title: Listy do redakcji
+  kind: fiction
+  placement: back
+  weight: 9
+  cooldown_issues: 2
+- id: sprostowania
+  title: Sprostowania
+  kind: fiction
+  placement: back
+  weight: 9
+  cooldown_issues: 2
+- id: ogloszenia
+  title: Ogłoszenia drobne
+  kind: fiction
+  placement: back
+  weight: 10
+  cooldown_issues: 1
+- id: cytat_dnia
+  title: Cytat dnia (źródło albo fikcja)
+  kind: mixed
+  placement: inside
+  weight: 4
+  cooldown_issues: 3
+- id: komiks
+  title: Komiks trzykadrowy
+  kind: fiction
+  placement: back
+  weight: 3
+  cooldown_issues: 6
+- id: zarty
+  title: Humor / kawały / suchary
+  kind: mixed
+  placement: back
+  weight: 3
+  cooldown_issues: 3
+- id: scp_dnia
+  title: SCP dnia
+  kind: sourced
+  placement: inside
+  weight: 6
+  cooldown_issues: 8
+- id: anomalia_redakcyjna
+  title: Anomalia tygodnia (nasze archiwum)
+  kind: fiction
+  placement: inside
+  weight: 7
+  cooldown_issues: 4
+- id: tego_dnia
+  title: Tego dnia w historii
+  kind: sourced
+  placement: back
+  weight: 5
+  cooldown_issues: 4
+- id: recenzja_opowiadania
+  title: Recenzja opowiadania
+  kind: sourced
+  placement: inside
+  weight: 9
+  cooldown_issues: 3
+- id: recenzja_horroru
+  title: Kronika horroru
+  kind: sourced
+  placement: inside
+  weight: 9
+  cooldown_issues: 3
+- id: gry_mechanika
+  title: 'Pod lupą: mechanika gry'
+  kind: sourced
+  placement: inside
+  weight: 10
+  cooldown_issues: 3
+- id: nintendo
+  title: Z przenośnej półki / Nintendo
+  kind: sourced
+  placement: inside
+  weight: 8
+  cooldown_issues: 4
+- id: rpg_solo
+  title: Solo RPG pod lupą
+  kind: sourced
+  placement: inside
+  weight: 9
+  cooldown_issues: 3
+- id: planszowka
+  title: Jedna planszówka na warsztat
+  kind: sourced
+  placement: inside
+  weight: 8
+  cooldown_issues: 4
+- id: metal
+  title: Odsłuch ciężki
+  kind: sourced
+  placement: inside
+  weight: 9
+  cooldown_issues: 3
+- id: technologia
+  title: Archiwum technologii
+  kind: sourced
+  placement: inside
+  weight: 9
+  cooldown_issues: 4
+- id: nauka
+  title: Rzecz dziwna, ale prawdziwa
+  kind: sourced
+  placement: inside
+  weight: 8
+  cooldown_issues: 4
+- id: psychologia
+  title: Mechanika niepokoju
+  kind: sourced
+  placement: inside
+  weight: 8
+  cooldown_issues: 5
+- id: slownik
+  title: Słownik rzeczy nieoczywistych
+  kind: mixed
+  placement: inside
+  weight: 5
+  cooldown_issues: 5
+- id: foto_archiwum
+  title: Fotografia z archiwum
+  kind: fiction
+  placement: inside
+  weight: 5
+  cooldown_issues: 6
+- id: rozklad
+  title: Rozkład jazdy (wyjątki)
+  kind: fiction
+  placement: back
+  weight: 6
+  cooldown_issues: 4
+- id: krzyzowka
+  title: Krzyżówka z błędem
+  kind: fiction
+  placement: back
+  weight: 5
+  cooldown_issues: 5
+- id: sudoku
+  title: Sudoku na kawę
+  kind: mixed
+  placement: back
+  weight: 7
+  cooldown_issues: 3
+- id: poczta_glosowa
+  title: Transkrypcja z sekretarki
+  kind: fiction
+  placement: inside
+  weight: 7
+  cooldown_issues: 4
+- id: przepis
+  title: Przepis czytelników
+  kind: fiction
+  placement: back
+  weight: 5
+  cooldown_issues: 6
+- id: nekrologi
+  title: Nekrologi i wspomnienia
+  kind: fiction
+  placement: back
+  weight: 6
+  cooldown_issues: 6
