@@ -1,4 +1,4 @@
-# KONSTYTUCJA PORANNEJ PRASY · wydanie 1.0
+# KONSTYTUCJA PORANNEJ PRASY · wydanie 1.1
 **Dokument nadrzędny / MASTER SPEC** · obowiązuje wszystkie nowe numery po wdrożeniu V3
 
 **MISJA.** Poranna Prasa jest prywatnym czterostronicowym dziennikiem o fascynacjach czytelnika, który wygląda i czyta się jak prawdziwa papierowa gazeta. Ma zaskakiwać, bawić, niepokoić i nagradzać uważne czytanie. **Nie jest zbiorem najnowszych wiadomości ani streszczeniem RSS.**
@@ -6,8 +6,8 @@
 ## 12 nienegocjowalnych artykułów
 
 1. **PAPIER.** Jeden numer to **dokładnie 4 osobne strony A4**, zawsze 1/2/3/4. Prawdziwy, czarno-biały wygląd starej gazety: ogromna winieta na s. 1, gęste 2–4 łamy, mała czytelna antykwa, mocne serifowe nagłówki, linie, podpisy zdjęć, tabele i gazetowa hierarchia. Bez współczesnych kart, szerokich marginesów i białych pustek. Wrażenie faktury papieru dopuszczalne, ale bez pogarszania kontrastu na laserowym Brotherze.
-2. **PRAWDZIWY SKŁAD, NIE OBRAZ STRONY.** Tekst, numeracja, sudoku i odsyłacze muszą być generowane deterministycznie w składaczu PDF. Grafiki są osobnymi ilustracjami. Piękne wizualizacje generowane jako jeden obraz *nie są* drukowalnym, spójnym numerem; kontrolujemy czytelność polskich liter i dokładne rozmieszczenie.
-3. **CZTERY FUNKCJE.** s. 1 = wielka okładka i temat dnia; s. 2–3 = treść główna i zmienne działy; s. 4 = **prawdziwa ostatnia strona**: komiks, ogłoszenia, listy, humor, zagadki, korekty i drobne rubryki. Nie ma piątej strony ani artykułu przeniesionego poza s. 4.
+2. **WIZUALIZACJA JEST WZORCEM FINALNYM.** Zaakceptowany look to gęsta, fotorealistyczna, stara czarno-biała gazeta z przetarciami, delikatnym ziarnem, antykwą, rycinami i ilustracjami. Wolno używać **osobnych, pełnostronicowych obrazów A4** i złączyć je w jeden czterostronicowy PDF — użytkownik woli taki rezultat niż czysty PDF o wyglądzie raportu. Jednak tekst wygenerowany w obrazie wymaga kontroli i ewentualnej rekonstrukcji typografii, bo model graficzny może przekręcać polskie słowa, daty i cyfry. Preferowana technika docelowa: obrazkowa warstwa wizualna + deterministyczne nakładki ważnego tekstu, numerów i łamigłówek; **nigdy tekst z randomowym OCR albo fikcyjną paginacją.**
+3. **CZTERY FUNKCJE I JEDNA WINIETA.** **WYŁĄCZNIE s. 1** ma ogromny tytuł „PORANNA PRASA”. **Strony 2 i 3** dostają wyłącznie **wąską paginę** z małym tytułem gazety, numerem strony, datą i numerem wydania — **żadnej gigantycznej winiety również na s. 3!** **Strona 4** także NIE ma głównego nagłówka: u góry tylko drobny pasek „4 | data | numer” i od razu właściwy komiks oraz rubryki. s. 2–3 = rozwinięte teksty, s. 4 = prawdziwa ostatnia strona. Nie ma piątej strony ani kontynuacji za s. 4.
 4. **PAGINACJA.** Każdy materiał ma `story_id` i faktycznie ustaloną stronę. Zapowiedź „str. N” powstaje *po* łamaniu. Nigdy nie pochodzi z tekstu AI. Spójne daty, numery, autorzy, tytuły, zwroty „ciąg dalszy” i zapowiedzi.
 5. **KONKRET PONAD WODĘ.** Materiał niefikcyjny ma tezę, co najmniej **3 sprawdzalne szczegóły** (nazwa, rok, mechanika, scena, liczba, źródło) oraz wniosek; materiał fikcyjny ma zdarzenie, konsekwencję i namacalny dowód. Odrzucamy pusty, ogólnikowy akapit, powtórzenia, pseudoemocjonalne slogany i udawane statystyki.
 6. **MNIEJ NEWSÓW, WIĘCEJ LEKTURY.** Zero przymusowych depesz. Zwykle: **1 autorski reportaż dziwny + 2–3 pogłębione teksty + 5–8 krótkich rubryk**. Wiadomości tylko wtedy, gdy naprawdę dotyczą zainteresowań czytelnika. Preferujemy tematy ponadczasowe i pomysły, do których warto wrócić.
@@ -21,5 +21,7 @@
 **TON REDAKCJI:** inteligentny, precyzyjny, lekko przewrotny; w fikcyjnej kronice śmiertelnie poważny. Gazeta ma po latach nadawać się do zakreślania ołówkiem i porównywania numerów.
 
 **PRAWO REDAKTORA:** jeśli numer jest nudny, banalny, pusty lub niespójny — **nie publikujemy go; poprawiamy tekst lub zmieniamy temat**. Nie dopchamy czterech stron przypadkowymi newsami.
+
+**GRAFICZNY AUTORYTET:** [BIBLIA_GRAFICZNA.md](BIBLIA_GRAFICZNA.md) opisuje konkretny layout 1/2/3/4, dozwolone sposoby przygotowania obrazów i automatyczne testy zgodności. W razie wątpliwości nadrzędne jest dosłowne życzenie użytkownika: „strona 3 też bez dużego nagłówka; strona 4 bez głównego nagłówka”.
 
 **STATUS:** konstytucja wersji rozwojowej. Automatyczny workflow na `main` pozostaje bez zmian do osobnej decyzji o wdrożeniu.
