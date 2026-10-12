@@ -1,0 +1,37 @@
+name: V3 editorial QA (development only)
+
+on:
+  push:
+    branches:
+      - feature/editorial-v3-universe
+    paths:
+      - 'v3/**'
+      - '.github/workflows/v3-editorial-qa.yml'
+  pull_request:
+    paths:
+      - 'v3/**'
+      - '.github/workflows/v3-editorial-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  v3-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: PDF test dependencies
+        run: python -m pip install 'reportlab>=4,<5' 'PyMuPDF>=1.24,<2' 'pillow>=10,<13'
+      - name: Editorial catalog, Sudoku and 60-number simulation
+        run: |
+          cd v3/editorial
+          PYTHONPATH=. python -m unittest -v test_production_audit test_editorial_v3
+      - name: Produce a non-publishing sample plan
+        run: |
+          python v3/editorial/pipeline.py --issue 1 --date 2026-10-12 --output /tmp/editorial-plan.json
+          python -c "import json; d=json.load(open('/tmp/editorial-plan.json')); assert d['status']=='DRAFT_OFFLINE_ONLY'; assert d['pages']==4"
