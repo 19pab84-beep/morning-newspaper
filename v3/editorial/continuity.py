@@ -43,41 +43,9 @@ def choose_rubrics(catalog: dict, history: list[dict], issue_no: int, count: int
 
 
 def sudoku_solution_count(puzzle: list[list[int]], *, limit: int = 2) -> int:
-    """4x4 classic sudoku with 2x2 subgrids. Counts up to `limit`."""
-    if len(puzzle)!=4 or any(len(row)!=4 for row in puzzle):
-        raise ValueError('Sudoku musi mieć 4x4')
-    grid = [row[:] for row in puzzle]
-    if any(not isinstance(n,int) or n not in (0,1,2,3,4) for row in grid for n in row):
-        raise ValueError('Sudoku: znaki spoza 0–4')
-    def valid(r,c,n):
-        return (n not in grid[r] and all(grid[i][c]!=n for i in range(4))
-                and all(grid[i][j]!=n for i in range(r//2*2,r//2*2+2)
-                        for j in range(c//2*2,c//2*2+2)))
-    # Existing duplicate givens fail before search.
-    for r in range(4):
-        for c in range(4):
-            n=grid[r][c]
-            if n:
-                grid[r][c]=0
-                if not valid(r,c,n):return 0
-                grid[r][c]=n
-    result=0
-    def solve():
-        nonlocal result
-        if result>=limit:return
-        choices=[]
-        for r in range(4):
-            for c in range(4):
-                if grid[r][c]==0:
-                    opts=[n for n in range(1,5) if valid(r,c,n)]
-                    if not opts:return
-                    choices.append((len(opts),r,c,opts))
-        if not choices:
-            result+=1;return
-        _,r,c,opts=min(choices)
-        for n in opts:
-            grid[r][c]=n;solve();grid[r][c]=0
-    solve();return result
+    """Constitutional 9×9 sudoku validator, shared with V3 editorial QA."""
+    from production_audit import sudoku_solutions_9x9
+    return sudoku_solutions_9x9(puzzle, limit=limit)
 
 
 def validate_issue(issue: dict, canon: dict, clues: dict, history: list[dict]) -> list[str]:
@@ -89,8 +57,8 @@ def validate_issue(issue: dict, canon: dict, clues: dict, history: list[dict]) -
         errors.append('Nie wolno ponownie opublikować numeru')
     if issue.get('backpage_index') != issue.get('page_count'):
         errors.append('Ostatnia strona nie jest ostatnią stroną PDF')
-    if issue.get('page_count',0) not in range(4,7):
-        errors.append('Wydanie powinno mieć 4–6 stron')
+    if issue.get('page_count',0) != 4:
+        errors.append('Wydanie musi mieć dokładnie 4 strony A4')
     if issue.get('fiction_disclaimer') is not True:
         errors.append('Brak dyskretnej, prawdziwej stopki fikcyjności')
     facts={x['id']:x for x in canon['facts']}
