@@ -31,6 +31,16 @@ jobs:
         run: |
           cd v3/editorial
           PYTHONPATH=. python -m unittest -v test_production_audit test_editorial_v3
+      - name: Report rotation coverage and limits
+        run: |
+          cd v3/editorial
+          python - <<'PY'
+          import json
+          from production_audit import load_catalog,simulate
+          result=simulate(load_catalog('departments.yaml'),60)
+          result.pop('series',None)
+          print('60-ISSUE ROTATION REPORT:', json.dumps(result,sort_keys=True))
+          PY
       - name: Produce a non-publishing sample plan
         run: |
           python v3/editorial/pipeline.py --issue 1 --date 2026-10-12 --output /tmp/editorial-plan.json
