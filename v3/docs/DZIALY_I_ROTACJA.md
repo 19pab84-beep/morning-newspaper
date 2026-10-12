@@ -120,6 +120,6 @@
 
 ## Kontrola grafiki i prawdziwego wyglądu gazety
 
-**Wizualny wzorzec:** fotorealistycznie wyglądająca czarno-biała stara gazeta, jak zaakceptowane wizualizacje. **Technika produkcyjna:** składamy teksty jako tekst PDF z prawdziwymi fontami, osadzamy osobno ryciny, archiwalne zdjęcia i bitmapowe komiksy, a na końcu stosujemy dyskretne rastry i faktury. NIE wolno przerabiać całej strony na obraz wygenerowany przez model — w takich obrazach typografia, litery i odsyłacze bywają losowe. Sprawdź render każdej strony A4, nie tylko miniaturę.
+**Wizualny wzorzec:** fotorealistyczna czarno-biała stara gazeta, jak w zaakceptowanych wizualizacjach. **Obowiązuje [Biblia Graficzna](BIBLIA_GRAFICZNA.md)**: s. 1 z jedyną dużą winietą, s. 2–3 tylko z małą paginą, s. 4 bez dużego nagłówka. **Dopuszczalna grafika-first:** cztery osobne obrazy A4 sklejone w PDF **dopiero po naprawieniu i zweryfikowaniu tekstu**. Hybrydowy renderer z obrazami i prawdziwą typografią również jest poprawny, jeśli wygląda jak zaakceptowany wzorzec. Nie wolno wypuszczać niezweryfikowanych liter AI, fałszywej paginacji ani nieczytelnych tekstów. Sprawdź render i treść każdej strony A4, nie tylko miniaturę.
 
 **Status:** katalog i zasady redakcyjne V3, niepodłączone jeszcze do automatycznej produkcji.
