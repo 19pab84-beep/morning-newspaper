@@ -6,7 +6,7 @@
 
 Przed generowaniem **zawsze** przeczytaj: `../docs/KONSTYTUCJA_PORANNEJ_PRASY.md`, `../docs/FOUR_PAGE_FOLIO_CONTRACT.md`, `../docs/DZIALY_I_ROTACJA.md`, a następnie katalog `departments.yaml`. W razie sprzeczności nadrzędna jest **konstytucja**, a w sprawach paginacji kontrakt **dokładnie 4 stron A4**.
 
-Każdy z agentów musi znać różnicę między działem a rubryką, bieżący zestaw ostatnich tematów i udokumentowane źródła. Agent do layoutu ma tworzyć prawdziwy złożony PDF, a nie wygenerowaną grafikę całej strony. Obowiązuje przyjęty wizualny look „prawdziwej gazety” i obrazkowe komiksy.
+Każdy agent musi znać różnicę między działem a rubryką, bieżący zestaw tematów i źródła. **Autorytet graficzny: `../docs/BIBLIA_GRAFICZNA.md`.** Przygotuj **cztery faktyczne strony A4** w zaakceptowanym, realistycznym looku starej gazety; dopuszczalne są pełnostronicowe obrazy sklejone w PDF, jeśli tekst i łamigłówki zostaną poprawione i zweryfikowane. **Tylko s. 1 ma duże „PORANNA PRASA”. Na s. 2 i 3 tylko wąska pagina; na s. 4 również tylko drobny folio, natychmiast komiks.** Cztery obrazy mają mieć identyczny numer, datę i continuity.
 
 ## 8 ról i ścisła kolejność
 
@@ -19,7 +19,7 @@ Każdy z agentów musi znać różnicę między działem a rubryką, bieżący z
 | 5. Kontroler fabuły | wszystkie artykuły + kanon + graf zależności | lista błędów continuity, proponowane poprawki | nie ujawnia wiedzy z przyszłych numerów; nie naprawia sprzeczności po cichu |
 | 6. Mistrz zagadek | scenariusz sezonu, lista tropów, redagowane rubryki | 1–3 dopuszczone tropy + prywatne rozwiązania | każdy trop ma ID, nośnik, późniejszy payoff i sposób sprawdzenia; brak przypadkowych szyfrów |
 | 7. Redaktor językowy | kompletny numer i źródła | spójne teksty, krótkie leady, nienadmuchane akapity | wycina uogólnienia; jeden artykuł = jedna wyraźna teza / śledztwo |
-| 8. Łamacz i kontroler druku | zatwierdzony pakiet artykułów | PDF, PRN i manifest | brak przepełnień, brak pustych połówek stron, **ostatnia strona gazetowa fizycznie na s. 4**, sudoku **9×9 z jednym rozwiązaniem**, komiks jako osadzony rysunek |
+| 8. Łamacz i kontroler druku | zatwierdzony pakiet artykułów | 4 grafiki A4 lub złożony PDF, kontrola typografii, finalny PDF, PRN i manifest | **wielka winieta tylko na s. 1**, 2–3 bez niej, s. 4 bez dużego nagłówka, spójne data/numer/odsyłacze, 4×A4, sudoku 9×9 o jednym rozwiązaniu, narysowany komiks |
 
 ## Rozdział prywatnej prawdy od gazety
 
