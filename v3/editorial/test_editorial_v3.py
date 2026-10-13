@@ -1,8 +1,11 @@
 """V3 tests, catalog-backed; no private canon or spoilers."""
 import unittest
+import sys
 from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parents[2]))
 from pipeline import outline
 from production_audit import load_catalog,verify_plan
+from v3.tests.test_press import ContentGates,PrivateGates,PdfGates,ApiGates
 
 class EditorialV3Test(unittest.TestCase):
     def test_plan_uses_full_catalog(self):

@@ -5,3 +5,20 @@ __pycache__/
 public/
 *.log
 .DS_Store
+
+# V3 output is generated, private continuity must never be committed.
+v3/output/
+world/
+private_press/
+**/canon.yaml
+**/arcs.yaml
+**/clues.json
+**/ledger.json
+**/private-state*.json
+
+# Edition data and assets live on private Google Drive, never in Git.
+v3/editions/
+v3/assets/
+v3/review/
+v3/docs/QA_*PILOTY*
+*.prn

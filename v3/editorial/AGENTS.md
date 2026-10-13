@@ -45,7 +45,11 @@ Artykuł o grze musi nazwać grę, 2–3 mechaniki i konkretną decyzję dla gra
 ## Przed produkcją
 
 1. Zatwierdzić ton i makietę na papierze.
-2. Utworzyć **prywatny** magazyn lore (Drive folder ograniczony do właściciela lub prywatne repo, osobny token dostępu tylko do odczytu w workflow).
+2. Utworzyć **prywatny** magazyn lore (Drive folder ograniczony do właściciela, osobny token dostępu tylko do odczytu w workflow).
 3. Podłączyć API, limity kosztów i model odpowiedni do każdego etapu.
 4. Test 7 numerów *offline* + symulacja 60 wydań, w tym pokrycie 32 działów i uniknięcie powtórzeń: rejestrować powtórzenia, sprzeczności i nierozwiązane wskazówki.
 5. Dopiero wtedy przełączyć workflow `main` i sprawdzić ponownie Brothera.
+
+## Magazyn
+
+Obowiązuje `../docs/STORAGE_CONTRACT.md`: repo zawiera wyłącznie kod i dokumentację techniczną. Wszystkie rękopisy, ilustracje, wydania, raporty QA, kanon i rozwiązania przechowuj na prywatnym Drive.
