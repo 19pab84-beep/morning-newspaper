@@ -58,3 +58,7 @@ akceptacja i fizyczny test wydruku; PRN sprawdzono tylko strukturalnie.
 
 `main`, workflow, Pages i automatyczne drukowanie pozostają bez zmian.
 Nie uruchamiaj pilotażowych wydań w automacie Brother/Tasker.
+
+## Prywatne drukowanie przygotowanego numeru
+
+[PRIVATE_PRINT_QUEUE.md](docs/PRIVATE_PRINT_QUEUE.md) opisuje pakiet wieczorny dla istniejącego Taskera. Tryb lokalnej kolejki nie wymaga API ani dostępu do Drive na telefonie; instalator nie drukuje. Brak pakietu na dany dzień oznacza brak druku.

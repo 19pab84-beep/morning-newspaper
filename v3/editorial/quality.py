@@ -120,6 +120,6 @@ def validate(issue,catalog,history):
             errors.append('Sudoku nie ma dokładnie jednego rozwiązania')
     except (KeyError,ValueError):
         errors.append('Sudoku musi być 9 × 9')
-    if issue.get('editorial_review',{}).get('status')!='APPROVED_FOR_PILOT':
+    if issue.get('editorial_review',{}).get('status')not in ('APPROVED_FOR_PILOT','APPROVED_FOR_PRINT'):
         errors.append('Brak oceny redakcyjnej dla pilota')
     return errors

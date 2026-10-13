@@ -39,7 +39,7 @@ def build(input_path, private_state, output, *, live=False, model=None, prn=Fals
     if live:
         issue=ResponsesAuthor(model).rewrite(issue,store.context(number))
     roles.extend([{'role':'researcher','executed':'source packet evidence/attestation gates; no automatic live browsing'},
-                  {'role':'writers','executed':'Responses API' if live else 'original ChatGPT Work pilot manuscripts'}])
+                  {'role':'writers','executed':'Responses API' if live else issue.get('provenance',{}).get('mode','original ChatGPT Work manuscripts')}])
     errors=validate(issue,load_catalog(ROOT/'editorial/departments.yaml'),history)
     errors+=store.check(issue)
     if errors:
@@ -123,7 +123,7 @@ def main():
         dest=build(args.input,args.private_state,args.output,live=args.live,model=args.model,prn=args.prn)
     except (ValueError,RuntimeError) as error:
         ap.exit(1,str(error)+'\n')
-    print('REVIEW ONLY: '+str(dest))
+    print('VALIDATED LOCAL OUTPUT: '+str(dest))
 
 
 if __name__=='__main__':

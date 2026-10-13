@@ -125,7 +125,7 @@ class PrivateStore:
                 raise ValueError('; '.join(errors))
             old = deepcopy(s)
             s['ledger'].append({'issue_no': n, 'date': issue['date'],
-                'status': 'REVIEW_PILOT', 'content_sha256': digest,
+                'status': ('READY_FOR_PRINT' if issue.get('status')=='READY_FOR_PRINT' else 'REVIEW_PILOT'), 'content_sha256': digest,
                 'story_ids': list(manifest['story_pages']),
                 'formats': [a['format_id'] for a in issue['stories'] if a['role'] == 'short'],
                 'main_departments': [a['department_id'] for a in issue['stories'] if a['role'] == 'feature'],

@@ -76,12 +76,13 @@ def home_network_available(printer_ip: str, port: int = 9100, home_subnet: str |
 
 def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
                 allow_demo=False, force=False, now=None,
-                state_path=STATE, home_subnet=None) -> str:
+                state_path=STATE, home_subnet=None, fetcher=None) -> str:
     if now is None:
         try:
             now = datetime.now(ZoneInfo('Europe/Warsaw'))
         except ZoneInfoNotFoundError as exc:
             raise ValueError('Brak bazy stref czasowych w Termuxie. Uruchom: python -m pip install tzdata') from exc
+    fetcher = fetcher or fetch
     day = now.date().isoformat()
     if not force and now.timetz().replace(tzinfo=None) >= time(7, 0):
         note('PO TERMINIE: po 07:00 nie drukuję automatycznie.')
@@ -96,7 +97,7 @@ def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
         note('POZA DOMEM: brak lokalnego polaczenia z drukarka; pomijam wydruk.')
         return 'away'
 
-    raw, resolved = fetch(base + 'latest.json?ts=' + now.strftime('%Y%m%d%H%M'), limit=200_000)
+    raw, resolved = fetcher(base + 'latest.json?ts=' + now.strftime('%Y%m%d%H%M'), limit=200_000)
     if not same_host(base, resolved):
         raise ValueError('Manifest przekierowano poza zaufaną domenę')
     manifest = json.loads(raw)
@@ -123,7 +124,7 @@ def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
     if filename != 'gazeta.prn':
         raise ValueError('Nieoczekiwana nazwa PRN w manifeście')
     file_url = urljoin(base, filename) + '?ts=' + now.strftime('%Y%m%d%H%M')
-    data, resolved = fetch(file_url, limit=MAX_PRN)
+    data, resolved = fetcher(file_url, limit=MAX_PRN)
     if not same_host(base, resolved):
         raise ValueError('PRN przekierowano poza zaufaną domenę')
     if len(data) != manifest.get('prn_bytes'):
@@ -151,24 +152,73 @@ def print_issue(base_url: str, printer_ip: str, port: int=9100, *,
     return 'sent'
 
 
+def local_queue_fetch(folder):
+    """Read only the two expected files; keep the same manifest/PRN validation."""
+    folder = Path(folder).resolve()
+    def read(url, *, limit):
+        parsed = urlsplit(url)
+        if parsed.scheme != 'https' or parsed.netloc != 'local-queue.invalid':
+            raise ValueError('Nieprawidłowy adres kolejki')
+        name = parsed.path.lstrip('/')
+        if name not in ('latest.json', 'gazeta.prn'):
+            raise ValueError('Nieoczekiwany plik kolejki')
+        path = (folder / name).resolve()
+        if path.parent != folder:
+            raise ValueError('Plik kolejki wychodzi poza katalog')
+        with path.open('rb') as stream:
+            data = stream.read(limit + 1)
+        if len(data) > limit:
+            raise ValueError('Plik przekracza dozwolony limit rozmiaru')
+        return data, url
+    return read
+
+
+def print_configured(conf, *, allow_demo=False, force=False, now=None, state_path=STATE):
+    """Private local queue mode does not fall back to the public RSS edition."""
+    if 'local_queue' not in conf:
+        return print_issue(conf['base_url'], conf['printer_ip'], conf.get('printer_port', 9100),
+                           allow_demo=allow_demo, force=force, now=now, state_path=state_path,
+                           home_subnet=conf.get('home_subnet'))
+    now = now or datetime.now(ZoneInfo('Europe/Warsaw'))
+    folder = Path(conf['local_queue']) / now.date().isoformat()
+    if not (folder/'latest.json').is_file():
+        note('BRAK NOWEGO WYDANIA: prywatna kolejka nie zawiera dzisiejszego numeru.')
+        return 'not-ready'
+    return print_issue('https://local-queue.invalid', conf['printer_ip'], conf.get('printer_port', 9100),
+                       allow_demo=allow_demo, force=force, now=now, state_path=state_path,
+                       home_subnet=conf.get('home_subnet'), fetcher=local_queue_fetch(folder))
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--config', type=Path, default=CONFIG)
     parser.add_argument('--allow-demo', action='store_true')
     parser.add_argument('--force', action='store_true', help='For manual testing only; may reprint')
+    parser.add_argument('--check-queue', action='store_true', help='Verify queued manifest and SHA256 without printer connection')
     args = parser.parse_args()
     if not args.config.exists():
         print(f'Brakuje konfiguracji: {args.config}', file=sys.stderr)
         return 2
     conf = json.loads(args.config.read_text(encoding='utf-8'))
+    if args.check_queue:
+        folder=Path(conf['local_queue'])
+        for manifest_path in sorted(folder.glob('*/latest.json')):
+            m=json.loads(manifest_path.read_text())
+            data=(manifest_path.parent/'gazeta.prn').read_bytes()
+            if m.get('schema')!=1 or m.get('status')!='ready' or m.get('is_demo') or m.get('pages')!=4:
+                raise ValueError('Nieprawidłowy manifest kolejki')
+            if m['date']!=manifest_path.parent.name or not m['issue_id'].startswith('poranna-prasa-'+m['date']):
+                raise ValueError('Nieprawidłowa data kolejki')
+            if len(data)>MAX_PRN or len(data)!=m['prn_bytes'] or hashlib.sha256(data).hexdigest()!=m['prn_sha256']:
+                raise ValueError('Nieprawidłowy PRN kolejki')
+            print('GOTOWE:',m['date'],'4 strony; SHA256 OK; niczego nie wysłano do drukarki')
+        return 0
     lockfile = STATE.parent / 'print.lock'
     lockfile.parent.mkdir(parents=True, exist_ok=True)
     try:
         with lockfile.open('w') as lock:
             fcntl.flock(lock, fcntl.LOCK_EX)
-            print_issue(conf['base_url'], conf['printer_ip'], conf.get('printer_port', 9100),
-                        allow_demo=args.allow_demo, force=args.force,
-                        home_subnet=conf.get('home_subnet'))
+            print_configured(conf, allow_demo=args.allow_demo, force=args.force)
         return 0
     except (OSError, ValueError, KeyError, TypeError) as e:
         note(f'BŁĄD: {type(e).__name__}: {e}')

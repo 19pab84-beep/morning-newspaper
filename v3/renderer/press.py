@@ -52,9 +52,10 @@ class Press:
         self.issue = issue
         self.c = canvas.Canvas(str(path), pagesize=A4, pageCompression=1, invariant=1)
         self.c.setTitle(f"Poranna Prasa · nr {issue['issue_no']:03d} · {issue['date']}")
-        self.c.setAuthor('Redakcja Porannej Prasy · pilot literacki AI')
+        self.c.setAuthor('Redakcja Porannej Prasy · teksty autorskie AI')
         self.day = date.fromisoformat(issue['date']).strftime('%d.%m.%Y')
         self.nr = f"NR {issue['issue_no']:03d}"
+        self.edition_label = 'WYDANIE CODZIENNE' if issue.get('status')=='READY_FOR_PRINT' else 'WYDANIE PRÓBNE'
         self.page = 0
         self.story_pages = {}
         self.regions = []
@@ -178,7 +179,7 @@ class Press:
         if number==1:
             self.label(f'{self.nr}  ·  ROK I  ·  4 STRONY',M,H-25,7.1)
             self.c.setFont('MetaB',7.1)
-            self.c.drawRightString(W-M,H-25,f'{self.day}  /  WYDANIE PRÓBNE')
+            self.c.drawRightString(W-M,H-25,f'{self.day}  /  {self.edition_label}')
             self.rule(M,H-34,WIDTH,.65)
             self.c.setFont('PressB',48)
             self.c.drawCentredString(W/2,H-82,'PORANNA PRASA')
@@ -191,7 +192,7 @@ class Press:
             if number in (2,3):
                 self.label('PORANNA PRASA',M+19,H-25,8,'PressB')
             self.c.setFont('Meta',7)
-            self.c.drawRightString(W-M,H-25,f'{self.day}  ·  {self.nr}  ·  WYDANIE PRÓBNE')
+            self.c.drawRightString(W-M,H-25,f'{self.day}  ·  {self.nr}  ·  {self.edition_label}')
             self.rule(M,H-33,WIDTH,.8)
         return H-44
 
@@ -354,5 +355,5 @@ class Press:
                 'story_pages':self.story_pages,'regions':self.regions,
                 'teasers':[dict(story_id=t['story_id'],page=self.story_pages[t['story_id']])
                            for t in self.issue['teasers']],
-                'status':'REVIEW_ONLY','dpi':300,'fiction_disclaimer':True,
+                'status':self.issue.get('status','REVIEW_ONLY'),'dpi':300,'fiction_disclaimer':True,
                 'comic_panels':4,'production_published':False}
