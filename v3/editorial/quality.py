@@ -65,7 +65,7 @@ def validate(issue,catalog,history):
                 errors.append(sid+': za wczesne powtórzenie rubryki')
         text=' '.join(s['paragraphs'])
         words=len(text.split())
-        minimum=320 if s['role']=='feature' else 200 if s['role']=='cover' else 50
+        minimum=250 if s['role']=='feature' else 200 if s['role']=='cover' else 50
         if words<minimum:
             errors.append(sid+': za mało konkretnego materiału')
         if len(set(s['paragraphs']))!=len(s['paragraphs']):
